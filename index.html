@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Coding How-To</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/theme/black.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/plugin/highlight/monokai.css">
+    <style>
+        .reveal h1, .reveal h2, .reveal h3 {
+            text-transform: none;
+        }
+        .reveal .slides section {
+            text-align: left;
+        }
+        .reveal code {
+            background: #3f3f3f;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        .reveal pre code {
+            max-height: 500px;
+        }
+        .highlight-blue {
+            color: #42affa;
+        }
+        .highlight-green {
+            color: #5df4a2;
+        }
+        .highlight-orange {
+            color: #ffa500;
+        }
+        .small-text {
+            font-size: 0.8em;
+        }
+        .reveal .slides section.title-slide {
+            text-align: center;
+        }
+        .split-screen {
+            display: flex;
+            gap: 20px;
+        }
+        .split-screen .column {
+            flex: 1;
+        }
+        .split-screen h4 {
+            margin-top: 0;
+            margin-bottom: 0.5em;
+        }
+        .split-screen pre {
+            font-size: 0.38em;
+        }
+        .split-screen ul {
+            font-size: 0.7em;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Title Slide -->
+            <section class="title-slide">
+                <h1 style="font-size: 1.5em;">Vibe Coding How-To</h1>
+                <p>Getting Started with AI-Assisted Development</p>
+                <p style="font-size: 0.5em; margin-top: 2em;">Developed by Stefano Morello, Zach Muhlbauer, and Stephen Zweibel</p>
+                <div style="margin-top: 1.5em;">
+                    <a href="http://ailab.gc.cuny.edu/" target="_blank"><img src="img/Logo Horizontal Bianco@2x.png" alt="CUNY AI Lab" style="height: 60px;"></a>
+                </div>
+            </section>
+
+            <section>
+                <h2>What is Vibe Coding?</h2>
+                <p class="small-text">A term coined by <strong>Andrej Karpathy</strong> (AI researcher, former Tesla/OpenAI)</p>
+                <ul class="small-text">
+                    <li class="fragment"><strong class="highlight-green">The idea:</strong> Describe what you want in plain language, let AI write the code</li>
+                    <li class="fragment"><strong class="highlight-blue">Why "vibe"?</strong> You focus on the <em>feel</em> and <em>intent</em> of what you want, not the syntax</li>
+                    <li class="fragment"><strong class="highlight-orange">How it works:</strong> You have a conversation with an AI agent that can read, write, and run code</li>
+                    <li class="fragment">You guide the direction, review the output, and iterate until it's right</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>How Do LLMs Work for Coding?</h3>
+                <ul class="small-text">
+                    <li>LLMs are trained on billions of lines of code from open-source projects, documentation, and Stack Overflow</li>
+                    <li class="fragment"><strong>They predict what code should come next based on patterns</strong>
+                        <ul>
+                            <li>Can complete functions, suggest implementations, explain code, and debug errors</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong>Command-line agents</strong> (like Gemini CLI) can execute commands, read/write files, and iterate on code
+                        <ul>
+                            <li>Different from chat interfaces</li>
+                            <li>Actively interact with your development environment</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Limitations of AI Coding</h3>
+                <ul class="small-text">
+                    <li><strong class="highlight-orange">Plausible but broken code</strong>
+                        <ul>
+                            <li>Syntax may look right but logic can be flawed</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong class="highlight-orange">Outdated libraries/syntax</strong>
+                        <ul>
+                            <li>May suggest deprecated methods or old versions</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong class="highlight-orange">Security vulnerabilities</strong>
+                        <ul>
+                            <li>Can create code with security flaws that could be exploited</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong class="highlight-orange">Limited context</strong>
+                        <ul>
+                            <li>Can't see your entire codebase at once</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Critical Questions</h3>
+                <p class="small-text">Before we build, let's pause and reflect</p>
+                <ul class="small-text">
+                    <li><strong class="highlight-blue">Academic Integrity</strong> - How do we cite AI-assisted work? What's collaboration vs. offloading?</li>
+                    <li class="fragment"><strong class="highlight-green">Bias & Fairness</strong> - AI models reflect biases in their training data</li>
+                    <li class="fragment"><strong class="highlight-orange">Environmental Impact</strong> - Training and running AI systems consume significant energy</li>
+                    <li class="fragment"><strong class="highlight-blue">Who builds these systems?</strong> - Often underpaid workers label data and moderate content</li>
+                    <li class="fragment"><strong class="highlight-green">Who controls AI?</strong> - Major tech companies control development and access</li>
+                    <li class="fragment"><strong class="highlight-orange">Privacy concerns</strong> - What data are you sharing? How is it used for training?</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Why Use AI Coding Tools, Then?</h3>
+                <ul class="small-text">
+                    <li>Prototyping and exploring ideas quickly</li>
+                    <li class="fragment">Helps learn new languages/frameworks by example</li>
+                    <li class="fragment">Debugging assistance and explaining error messages</li>
+                    <li class="fragment">Documentation and code explanation</li>
+                    <li class="fragment">Reduces context switching (stay in your terminal)</li>
+                    <li class="fragment">Democratizes access to coding for people without CS backgrounds</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>When NOT to Use AI</h3>
+                <p class="small-text highlight-blue"><strong>Use AI as a tool, not a replacement for understanding</strong></p>
+                <ul class="small-text">
+                    <li>When learning fundamentals for the first time</li>
+                    <li class="fragment">For sensitive or confidential data/code</li>
+                    <li class="fragment">When you need guaranteed accuracy (medical, legal, safety-critical)</li>
+                    <li class="fragment">When the goal is to develop your own problem-solving skills</li>
+                    <li class="fragment">When it would violate academic or professional policies</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Prompt Engineering Basics</h3>
+                <p class="small-text">How you ask matters as much as what you ask</p>
+                <ul class="small-text">
+                    <li><strong class="highlight-green">Be specific:</strong> "Create a Python function that sorts a list of dictionaries by the 'date' key" vs. "Help me sort some data"</li>
+                    <li class="fragment"><strong class="highlight-blue">Provide context:</strong> Share relevant code, error messages, project structure</li>
+                    <li class="fragment"><strong class="highlight-orange">Iterate:</strong> Refine your prompts based on results</li>
+                </ul>
+            </section>
+
+            <!-- Command Line Section -->
+            <section class="title-slide">
+                <h2>Command Line Basics</h2>
+                <p>Let's get comfortable with the terminal</p>
+            </section>
+
+            <section>
+                <h3>What is the Terminal?</h3>
+                <p>A <strong>terminal</strong> (or command line) is a text-based interface for controlling your computer</p>
+                <p class="fragment small-text">Instead of clicking buttons and icons, you type commands</p>
+                <div class="fragment">
+                    <p class="small-text">Why use it?</p>
+                    <ul class="small-text">
+                        <li>More powerful and precise control</li>
+                        <li>Essential for development work</li>
+                        <li>How AI coding agents interact with your system</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h3>Opening Your Terminal</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <p><strong>Mac:</strong></p>
+                        <ol class="small-text">
+                            <li>Press <code>Cmd + Space</code></li>
+                            <li>Type "Terminal"</li>
+                            <li>Press Return</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <p><strong>Windows:</strong></p>
+                        <ol class="small-text">
+                            <li>Press Windows key</li>
+                            <li>Type "PowerShell"</li>
+                            <li>Press Enter</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section class="title-slide">
+                <h3>Essential Commands</h3>
+                <table class="small-text">
+                    <tr>
+                        <td><code>ls</code></td>
+                        <td>List files & folders in current directory</td>
+                    </tr>
+                    <tr class="fragment">
+                        <td><code>mkdir &lt;name&gt;</code></td>
+                        <td>Create a new folder</td>
+                    </tr>
+                    <tr class="fragment">
+                        <td><code>cd &lt;name&gt;</code></td>
+                        <td>Move into a specific folder</td>
+                    </tr>
+                    <tr class="fragment">
+                        <td><code>pwd</code></td>
+                        <td>Show your current location</td>
+                    </tr>
+                    <tr class="fragment">
+                        <td><code>cd ..</code></td>
+                        <td>Move up one level to parent directory</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- Installing Gemini CLI -->
+            <section class="title-slide">
+                <h2>Installing Gemini CLI</h2>
+            </section>
+
+            <section>
+                <h3>Installation</h3>
+                <div class="split-screen">
+                    <div class="column">
+                        <h4>Windows (PowerShell)</h4>
+                        <ul>
+                            <li>Install Node.js LTS: <a href="https://nodejs.org/en/download" target="_blank">nodejs.org</a></li>
+                            <li class="fragment">Reopen PowerShell</li>
+                            <li class="fragment">Install Gemini CLI:</li>
+                        </ul>
+                        <pre class="fragment"><code class="bash">npm install -g @google/gemini-cli</code></pre>
+                    </div>
+                    <div class="column" style="flex: 1.5;">
+                        <h4>macOS (Terminal)</h4>
+                        <ul>
+                            <li>Install Homebrew: copy command from <a href="https://brew.sh/" target="_blank">brew.sh</a> and run in Terminal</li>
+                            <li class="fragment">Add Homebrew to PATH:</li>
+                        </ul>
+                        <pre class="fragment"><code class="bash">echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' \
+  >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"</code></pre>
+                        <ul>
+                            <li class="fragment">Install Gemini CLI:</li>
+                        </ul>
+                        <pre class="fragment"><code class="bash">brew install gemini-cli</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Login Setup</h3>
+                <ul class="small-text">
+                    <li>After installation, run <code>gemini</code> to authenticate with Google</li>
+                    <li class="fragment">Choose "Login with Google" and follow the browser prompt</li>
+                    <li class="fragment">Free tier: 60 requests/min, 1,000 requests/day</li>
+                    <li class="fragment"><strong class="highlight-blue">Having technical issues? Just ask!</strong></li>
+                </ul>
+            </section>
+
+            <!-- Starting a Session -->
+            <section>
+                <h2>Starting a Session</h2>
+                <p class="small-text">Each time you run <code>gemini</code>, you start a <strong>new session</strong></p>
+                <ul class="small-text">
+                    <li><strong class="highlight-orange">Important:</strong> Always open Gemini from your project folder
+                        <ul>
+                            <li>The agent works with files in your current directory</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong class="highlight-green">Create a project folder:</strong>
+                        <pre><code class="bash">mkdir my-project</code></pre>
+                    </li>
+                    <li class="fragment"><strong class="highlight-blue">Enter the folder:</strong>
+                        <pre><code class="bash">cd my-project</code></pre>
+                    </li>
+                    <li class="fragment"><strong>Start Gemini:</strong>
+                        <pre><code class="bash">gemini</code></pre>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Start with a Plan</h2>
+                <ul class="small-text">
+                    <li><strong class="highlight-green">Use Plan Mode:</strong> Press <code>Shift + Tab</code> to toggle plan mode
+                        <ul>
+                            <li>In plan mode, Gemini will plan before taking action</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong class="highlight-blue">Tip:</strong> Write your idea in a <code>project-idea.md</code> file first
+                        <ul>
+                            <li>Create the file in your project folder before starting Gemini</li>
+                            <li>Then ask: "Read project-idea.md and create a plan"</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">The plan should include:
+                        <ul>
+                            <li>What the project will do</li>
+                            <li>What files will be created</li>
+                            <li>Key features or components</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong class="highlight-orange">Review the plan and ask for changes before saying "go ahead"</strong></li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Example Prompt & Plan</h3>
+                <p class="small-text"><strong>Your prompt:</strong></p>
+                <p class="small-text" style="font-style: italic;">"I want to build a personal portfolio website with my name, a short bio, and links to my social media. Write a plan first."</p>
+                <p class="small-text fragment"><strong>Agent's plan:</strong></p>
+                <ul class="small-text fragment">
+                    <li><code>index.html</code> - Main page with your name and bio</li>
+                    <li><code>style.css</code> - Styling for colors, fonts, layout</li>
+                    <li>Sections: Header, About Me, Social Links, Footer</li>
+                    <li>Mobile-friendly responsive design</li>
+                </ul>
+                <p class="small-text fragment"><strong class="highlight-green">Then you can say:</strong> "Looks good, but add a section for my projects too"</p>
+            </section>
+
+            <!-- Iterative Process -->
+            <section>
+                <h2>The Iterative Process</h2>
+                <p class="small-text">Vibe coding is a conversation, not a one-shot command</p>
+                <ul class="small-text">
+                    <li><strong class="highlight-green">Review output</strong> - Check what the agent created before moving on</li>
+                    <li class="fragment"><strong class="highlight-blue">Give feedback</strong> - Tell the agent what to fix, improve, or change</li>
+                    <li class="fragment"><strong class="highlight-orange">Build incrementally</strong> - Add features one at a time, testing as you go</li>
+                    <li class="fragment"><strong>Ask questions</strong> - If you don't understand something, ask the agent to explain</li>
+                </ul>
+            </section>
+
+            <!-- Slash Commands -->
+            <section>
+                <h2>Slash Commands</h2>
+                <p class="small-text">Type <code>/</code> followed by a command name for quick actions</p>
+                <table class="small-text">
+                    <tr>
+                        <td><code>/help</code></td>
+                        <td>List all available commands</td>
+                    </tr>
+                    <tr class="fragment">
+                        <td><code>/model</code></td>
+                        <td>Change the AI model</td>
+                    </tr>
+                    <tr class="fragment">
+                        <td><code>/settings</code></td>
+                        <td>Open settings menu</td>
+                    </tr>
+                    <tr class="fragment">
+                        <td><code>/init</code></td>
+                        <td>Create project memory file</td>
+                    </tr>
+                    <tr class="fragment">
+                        <td><code>/restore</code></td>
+                        <td>Undo the last file changes</td>
+                    </tr>
+                    <tr class="fragment">
+                        <td><code>/clear</code></td>
+                        <td>Clear the screen</td>
+                    </tr>
+                    <tr class="fragment">
+                        <td><code>/quit</code></td>
+                        <td>Exit Gemini (or press <code>Ctrl+C</code> twice)</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- Choosing a Model -->
+            <section>
+                <h2>Choosing a Model</h2>
+                <p class="small-text">Different models have different strengths</p>
+                <ul class="small-text">
+                    <li><strong class="highlight-green">Select a model:</strong> Type <code>/model</code> in Gemini
+                        <ul>
+                            <li><strong>Auto</strong> (recommended) - Gemini picks the best model for each task</li>
+                            <li><strong>Pro</strong> - Best for complex reasoning tasks</li>
+                            <li><strong>Flash</strong> - Faster responses, good for simple tasks</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong class="highlight-blue">Enable Gemini 3:</strong> Use <code>/settings</code> and turn on <em>Preview Features</em>
+                        <ul>
+                            <li>Then <code>/model</code> → select <em>Auto (Gemini 3)</em> or <em>Pro</em></li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong class="highlight-orange">Note:</strong> Free tier has daily limits
+                        <ul>
+                            <li><strong>Students:</strong> Get 1 year free Pro access at <a href="https://gemini.google/students/" target="_blank">gemini.google/students</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Project Memory with /init -->
+            <section>
+                <h2>Saving Project Memory</h2>
+                <p class="small-text">Help the agent remember your project context across sessions</p>
+                <ul class="small-text">
+                    <li><strong class="highlight-green">First time:</strong> Use <code>/init</code> to create a <code>GEMINI.md</code> file
+                        <ul>
+                            <li>Stores project structure, conventions, and preferences</li>
+                            <li>Agent reads this automatically when you start a new session</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong class="highlight-blue">To update:</strong> Say <em>"Update my memory file"</em>
+                        <ul>
+                            <li><code>/init</code> won't update an existing file</li>
+                            <li>Explicitly ask the agent to update it with new learnings</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Previewing Your Work -->
+            <section>
+                <h2>Previewing Your Website</h2>
+                <p class="small-text">For websites and web apps, you'll want to see your work in a browser</p>
+                <ul class="small-text">
+                    <li><strong class="highlight-green">Simple HTML:</strong> Double-click the <code>index.html</code> file to open in browser</li>
+                    <li class="fragment"><strong class="highlight-blue">Live server:</strong> Ask Gemini: <em>"Start a local server so I can preview my site"</em>
+                        <ul>
+                            <li>Updates automatically when you make changes</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong class="highlight-orange">View in browser:</strong> Go to <code>http://localhost:8000</code> (or the port Gemini tells you)</li>
+                    <li class="fragment"><strong>Stop the server:</strong> Press <code>Ctrl+C</code> in the terminal running the server</li>
+                </ul>
+            </section>
+
+            <!-- Privacy Settings -->
+            <section>
+                <h2>Privacy Settings in Gemini</h2>
+                <p class="small-text">Control what data Google collects from your sessions</p>
+                <ul class="small-text">
+                    <li><strong class="highlight-orange">Why it matters:</strong> Especially with a free account, Google may use your prompts and code to improve their models</li>
+                    <li class="fragment"><strong class="highlight-green">Check your settings:</strong> Type <code>/privacy</code> in Gemini
+                        <ul>
+                            <li>Shows the privacy notice and lets you change consent</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong class="highlight-blue">To opt out:</strong> Use <code>/settings</code> and disable data collection
+                        <ul>
+                            <li>Or set <code>"usageStatisticsEnabled": false</code> in your settings.json</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong>Good news:</strong> Gemini automatically redacts passwords, API keys, and secrets from commands</li>
+                </ul>
+            </section>
+
+            <!-- Version Control -->
+            <section>
+                <h2>Why Version Control?</h2>
+                <p class="small-text">AI agents can break things - version control is your safety net</p>
+                <ul class="small-text">
+                    <li><strong class="highlight-green">Save checkpoints:</strong> Capture working versions before making big changes</li>
+                    <li class="fragment"><strong class="highlight-blue">Undo mistakes:</strong> Roll back if the agent breaks something</li>
+                    <li class="fragment"><strong class="highlight-orange">Track history:</strong> See what changed and when</li>
+                    <li class="fragment"><strong>Backup your work:</strong> Push to GitHub so you don't lose everything</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>What is GitHub?</h2>
+                <p class="small-text">A website that stores your code in the cloud</p>
+                <ul class="small-text">
+                    <li><strong class="highlight-green">Git</strong> = the version control system (runs on your computer)</li>
+                    <li class="fragment"><strong class="highlight-blue">GitHub</strong> = a website that hosts your git repositories online</li>
+                    <li class="fragment"><strong>Sign up:</strong> <a href="https://github.com/signup" target="_blank">github.com/signup</a> (free account)</li>
+                    <li class="fragment"><strong class="highlight-orange">Visibility:</strong>
+                        <ul>
+                            <li><strong>Public repos:</strong> Anyone can see your code (good for portfolios)</li>
+                            <li><strong>Private repos:</strong> Only you can see your code (good for work in progress)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Using Git with Gemini</h2>
+                <p class="small-text">You can ask Gemini to handle version control for you</p>
+                <ul class="small-text">
+                    <li><strong class="highlight-green">Initialize a repo:</strong> <em>"Set up git for this project"</em></li>
+                    <li class="fragment"><strong class="highlight-blue">Save a checkpoint:</strong> <em>"Commit my changes with the message 'added homepage'"</em></li>
+                    <li class="fragment"><strong class="highlight-orange">Push to GitHub:</strong> <em>"Create a GitHub repo and push my code"</em>
+                        <ul>
+                            <li>First time may require GitHub authentication</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong>Check status:</strong> <em>"Show me the git status"</em></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Rolling Back Changes</h2>
+                <p class="small-text">When things go wrong, you can revert to a previous version</p>
+                <ul class="small-text">
+                    <li><strong class="highlight-green">See history:</strong> <em>"Show me the commit history"</em></li>
+                    <li class="fragment"><strong class="highlight-blue">Undo last commit:</strong> <em>"Undo the last commit but keep my files"</em></li>
+                    <li class="fragment"><strong class="highlight-orange">Go back further:</strong> <em>"Revert to the commit where the homepage was working"</em></li>
+                    <li class="fragment"><strong class="highlight-blue">Tip:</strong> Commit often with clear messages so you can find the right version</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>GitHub Tips</h2>
+                <ul class="small-text">
+                    <li><strong class="highlight-green">GitHub Education:</strong> Free perks for students & educators
+                        <ul>
+                            <li>Increased storage, private repos, and <strong>Copilot Pro</strong></li>
+                            <li>Copilot = AI assistant built into code editors (like VS Code)</li>
+                            <li>Sign up: <a href="https://github.com/github-education-resources" target="_blank">github.com/github-education-resources</a></li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong class="highlight-orange">Don't share sensitive data!</strong>
+                        <ul>
+                            <li>Passwords, API keys, personal info should never be pushed</li>
+                            <li>Ask Gemini: <em>"Add my .env file to .gitignore so it won't be uploaded"</em></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Debugging -->
+            <section>
+                <h2>Debugging with Gemini</h2>
+                <p class="small-text">When something breaks, Gemini can help you fix it</p>
+                <ul class="small-text">
+                    <li><strong class="highlight-green">Share the error:</strong> Copy and paste the full error message into Gemini</li>
+                    <li class="fragment"><strong class="highlight-blue">Ask questions:</strong>
+                        <ul>
+                            <li><em>"What went wrong?"</em></li>
+                            <li><em>"Why am I getting this error?"</em></li>
+                            <li><em>"Fix this error"</em></li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong class="highlight-orange">Give context:</strong> Tell Gemini what you were trying to do when the error happened</li>
+                    <li class="fragment"><strong>Be patient:</strong> Sometimes it takes a few tries to find the fix</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>When to Start Fresh</h2>
+                <p class="small-text">Sometimes it's better to start a new session</p>
+                <ul class="small-text">
+                    <li><strong class="highlight-orange">Signs you should restart:</strong>
+                        <ul>
+                            <li>Gemini keeps making the same mistake over and over</li>
+                            <li class="fragment">Responses seem confused or off-topic</li>
+                            <li class="fragment">You've changed direction significantly from where you started</li>
+                            <li class="fragment">Too many errors have piled up</li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong class="highlight-green">To start fresh:</strong> Type <code>/quit</code>, then run <code>gemini</code> again</li>
+                    <li class="fragment"><strong class="highlight-blue">Your GEMINI.md file</strong> will help the new session understand your project</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Other Vibe Coding Tools</h2>
+                <p class="small-text">We use Gemini CLI because students can get it free, but the same principles apply to other tools</p>
+                <ul class="small-text">
+                    <li class="fragment"><strong class="highlight-green">Claude Code</strong> - Recommended for advanced projects
+                        <ul>
+                            <li><a href="https://claude.ai/code" target="_blank">claude.ai/code</a></li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong class="highlight-blue">Kimi K2.5</strong> - If you prefer open-weight models
+                        <ul>
+                            <li><a href="https://kimi.ai" target="_blank">kimi.ai</a></li>
+                        </ul>
+                    </li>
+                    <li class="fragment"><strong class="highlight-orange">OpenAI Codex / ChatGPT</strong> - Another popular option</li>
+                    <li class="fragment"><strong>The skills transfer:</strong> Planning, iterating, version control, and debugging work the same way</li>
+                </ul>
+            </section>
+
+            <!-- Closing -->
+            <section class="title-slide">
+                <h1>Happy Vibing!</h1>
+                <p class="fragment">Reach out: <a href="mailto:ailab@gc.cuny.edu">ailab@gc.cuny.edu</a></p>
+                <p class="fragment">Visit us: <a href="https://ailab.gc.cuny.edu" target="_blank">ailab.gc.cuny.edu</a></p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
